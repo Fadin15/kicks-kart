@@ -16,6 +16,8 @@
     "fileupload": "^0.2.7",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
+    "mongoclient": "^1.0.3",
+    "mongodb": "^4.5.0",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15",
     "upload": "^1.1.1"
