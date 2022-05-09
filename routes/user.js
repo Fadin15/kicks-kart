@@ -1,8 +1,18 @@
 const { response } = require('express');
 var express = require('express');
+const { render } = require('../app');
 var router = express.Router();
 var productHelpers=require('../helpers/product-helpers')
 const userHelpers=require('../helpers/user-helpers')
+const verifyLogin=(req,res,next)=>{
+  if(req.session.loggedIn){
+    next()
+  }else{
+    res.redirect('/login')
+  }
+}
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -41,7 +51,7 @@ router.post('/login',(req,res)=>{
       req.session.user=response.user
       res.redirect('/')
     }else{
-      req.session.loginErr=true
+      req.session.loginErr="Invalid username or password"
       res.redirect('/login')
     }
   })
@@ -50,6 +60,8 @@ router.post('/login',(req,res)=>{
     req.session.destroy()
     res.redirect('/')
   })
-
+ router.get('/cart',verifyLogin,(req,res)=>{
+   res.render('user/cart')
+ })
 
 module.exports = router;

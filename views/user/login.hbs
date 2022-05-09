@@ -4,7 +4,7 @@
         <h2 class="text-center">Login</h2>
         <form action="/login" method="post">
         {{#if loginErr}}
-        <p class="error">invalid username or password</p>
+        <p class="error">{{loginErr}}</p>
         {{/if}}
 
 
