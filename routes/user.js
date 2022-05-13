@@ -72,8 +72,10 @@ router.post('/login',(req,res)=>{
    res.render('user/cart',{products,user:req.session.user})
  })
 router.get('/add-to-cart/:id',verifyLogin,(req,res)=>{
+  console.log("api call");
+
   userHelpers.addToCart(req.params.id,req.session.user._id).then(()=>{
-    res.redirect('/')
+    res.json({status:true})
   })
 })
 module.exports = router;
